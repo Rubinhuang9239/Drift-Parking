@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <title>RubinBot_Floating</title>
+
+
+<script>
+//-----------JoySticks UI------------//
+
+
+$(document).ready(function(){
+    
+});
+
+function setup(){
+  }
+  
+function draw(){
+  
+  if(window.DeviceMotionEvent) {
+
+    window.addEventListener('devicemotion',deviceMotionHandler,false);
+
+    }
+  
+  StickPos();
+
+  }
+  
+  
+
+  var StableRotate = 0;  
+  function deviceMotionHandler(eventData) {
+         var acceleration = eventData.accelerationIncludingGravity;
+     StableRotate += ((acceleration.x/9.8) - StableRotate) * 0.2;
+     }
+  
+  
+
+function StickPos(){
+  botContainer.style.webkitTransform = "rotateZ("+ (-1 * 90 * StableRotate) + "deg)";
+  }
+
+</script>
+
+<style>
+
+body{
+  height:100%;
+  width:100%;
+  margin:0px;
+  padding:0px;
+  background-color: #222;
+  }
+
+  #botContainer{
+  border-radius:50%;
+  position:fixed;
+  width:15%;
+  z-index:9;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right:0px;
+  margin:auto;
+  }
+
+  #rubinBot{
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(rubin.png);
+  height: 100%;
+  width: 100%;
+  -webkit-animation: RubinPop 1.5s infinite;
+  -webkit-animation-timing-function:ease-in-out;
+  }
+
+  @-webkit-keyframes RubinPop
+  {0%   {-webkit-transform: translateY(0px);}
+  50% {-webkit-transform: translateY(36px);}
+  100% {-webkit-transform: translateY(0px);}}
+
+</style>
+
+  </head>
+
+
+  <body>
+    <div id="botContainer">
+      <div id = "rubinBot" >
+      </div>
+    </div>
+  </body>
+
+
+</html>

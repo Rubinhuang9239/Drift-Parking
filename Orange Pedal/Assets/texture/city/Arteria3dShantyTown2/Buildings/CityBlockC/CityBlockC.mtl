@@ -1,0 +1,79 @@
+# Wavefront MTL file
+# Creator: Ultimate Unwrap3D Pro v3.26
+# URL: http://www.unwrap3d.com
+# Time: Thu Mar 31 17:55:43 2011
+# num_materials: 8
+
+newmtl ShantyTextureE
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureE.dds
+
+newmtl ShantyTextureU
+Ka 0.000000 0.000000 0.000000
+Kd 0.964706 1.000000 0.996078
+Ks 0.964706 1.000000 0.996078
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureU.dds
+
+newmtl ShantyTextureT
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureT.dds
+
+newmtl ShantyTextureS
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureS.dds
+
+newmtl ShantyTextureO
+Ka 0.000000 0.000000 0.000000
+Kd 0.200000 0.200000 0.200000
+Ks 0.200000 0.200000 0.200000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureO.dds
+
+newmtl ShPathA
+Ka 0.000000 0.000000 0.000000
+Kd 0.200000 0.200000 0.200000
+Ks 0.200000 0.200000 0.200000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShPathA.dds
+
+newmtl HighRiseBrickTILED
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd HighRiseBrickTILED.dds
+
+newmtl ShantyTextureV
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000061
+map_Kd ShantyTextureV.dds
+
+# num_materials: 8

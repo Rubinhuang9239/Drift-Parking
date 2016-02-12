@@ -1,0 +1,268 @@
+# Wavefront MTL file
+# Creator: Ultimate Unwrap3D Pro v3.26
+# URL: http://www.unwrap3d.com
+# Time: Thu Mar 31 17:48:55 2011
+# num_materials: 29
+
+newmtl ShantyTextureA
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureA.dds
+
+newmtl ShantyTextureK
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureK.dds
+
+newmtl ShantyTextureC
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureC.dds
+
+newmtl ShantyTextureL
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureL.dds
+
+newmtl ShantyTextureJ
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureJ.dds
+
+newmtl Wire
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd Wire.dds
+
+newmtl ShantyTextureI
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureI.dds
+
+newmtl ShantyTextureH
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureH.dds
+
+newmtl ShantyTextureG
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureG.dds
+
+newmtl ShantyTextureB
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureB.dds
+
+newmtl ShantyTextureE
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureE.dds
+
+newmtl ShantyTextureD
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureD.dds
+
+newmtl ShantyTextureF
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureF.dds
+
+newmtl ShantyTextureU
+Ka 0.000000 0.000000 0.000000
+Kd 0.964706 1.000000 0.996078
+Ks 0.964706 1.000000 0.996078
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureU.dds
+
+newmtl ShantyTextureT
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureT.dds
+
+newmtl ShantyTextureS
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureS.dds
+
+newmtl ShantyTextureO
+Ka 0.000000 0.000000 0.000000
+Kd 0.200000 0.200000 0.200000
+Ks 0.200000 0.200000 0.200000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureO.dds
+
+newmtl ShPathA
+Ka 0.000000 0.000000 0.000000
+Kd 0.200000 0.200000 0.200000
+Ks 0.200000 0.200000 0.200000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShPathA.dds
+
+newmtl ShantyTextureP
+Ka 0.000000 0.000000 0.000000
+Kd 0.200000 0.200000 0.200000
+Ks 0.200000 0.200000 0.200000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureP.dds
+
+newmtl grill
+Ka 0.000000 0.000000 0.000000
+Kd 0.200000 0.200000 0.200000
+Ks 0.200000 0.200000 0.200000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd grill.dds
+
+newmtl WallTiledA
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000061
+map_Kd WallTiledA.dds
+
+newmtl ShantyTextureQ
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000061
+map_Kd ShantyTextureQ.dds
+
+newmtl ShantyTextureR
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000061
+map_Kd ShantyTextureR.dds
+
+newmtl HighRiseBrickTILED
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd HighRiseBrickTILED.dds
+
+newmtl ShantyTextureV
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000061
+map_Kd ShantyTextureV.dds
+
+newmtl ShantyTextureM
+Ka 0.000000 0.000000 0.000000
+Kd 0.820000 0.830000 0.870000
+Ks 0.820000 0.830000 0.870000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureM.dds
+
+newmtl ShantyTextureN
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd ShantyTextureN.dds
+
+newmtl Thatched
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd Thatched.dds
+
+newmtl TiledWood
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+d 1.000000
+illum 2
+Ns 0.000061
+map_Kd TiledWood.dds
+
+# num_materials: 29

@@ -1,0 +1,92 @@
+<html>
+
+<script src="script/jquery-1.8.3.js"></script>
+<script src="script/p5.min.js"></script>
+<script src="script/socket.io.js"></script>
+
+<script>
+
+var panic = false;
+
+$('document').ready(function(){
+
+$('#OrangeEmoji').click(function(){
+changePanicStatus();
+});
+
+});
+
+
+
+function changePanicStatus(){
+if(panic == false){
+	panic = true;
+	document.getElementById('Body').style.backgroundColor = "#FF5478";
+	document.getElementById('OrangeEmoji').style.backgroundImage = "url('panicEmoji2.png')";
+}
+else if(panic == true){
+	panic = false;
+	document.getElementById('Body').style.backgroundColor = "#00BDA0";
+	document.getElementById('OrangeEmoji').style.backgroundImage = "url('defaultEmoji.png')";
+}
+
+Send();
+}
+
+//-------Socket.io--------//
+
+  var socket = io();
+
+  var SteerPos = new Array();
+    
+
+  function Send(){
+
+    socket.emit('brakefail', panic);
+    return false;
+  }
+
+</script>
+
+<style>
+#OrangeEmoji{
+	height: 320px;
+	width: 320px;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	background-image: url('defaultEmoji.png');
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	border-radius: 32px;
+}
+
+html{
+	height:100%;
+	width: 100%;
+}
+
+body{
+	padding: 0px;
+	margin: 0px;
+	height:100%;
+	width: 100%;
+	background-color: #00bda0;
+	-webkit-transition: background-color 1s ease-in-out;
+}
+
+</style>
+
+<body id="Body">
+
+<div id = "OrangeEmoji" >
+</div>
+
+</body>
+
+</html>

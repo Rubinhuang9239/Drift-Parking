@@ -1,0 +1,15 @@
+# Wavefront MTL file
+# Creator: Ultimate Unwrap3D Pro v3.18
+# Time: Mon Sep 07 20:32:01 2009
+# num_materials: 1
+
+newmtl concrete_wall
+Ka 0.000000 0.000000 0.000000
+Kd 0.992157 0.992157 0.992157
+Ks 0.992157 0.992157 0.992157
+d 1.000000
+illum 2
+Ns 1.000000
+map_Kd concrete_wall.dds
+
+# num_materials: 1

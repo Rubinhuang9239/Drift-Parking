@@ -1,0 +1,15 @@
+# Wavefront MTL file
+# Creator: Ultimate Unwrap3D Pro v3.18
+# Time: Thu Sep 17 19:12:02 2009
+# num_materials: 1
+
+newmtl worn_torn17
+Ka 0.000000 0.000000 0.000000
+Kd 0.992157 0.992157 0.992157
+Ks 0.992157 0.992157 0.992157
+d 1.000000
+illum 2
+Ns 1.000000
+map_Kd wartorn17.jpg
+
+# num_materials: 1
