@@ -1,51 +1,52 @@
-var app = require('express')();
+//Express
 var express = require('express');
-var http = require('http').Server(app);
-var io_http = require('socket.io')(http);
+var app = express();
+var ip = require("ip");
+  
+  app.use(express.static('public'));
 
-var io_unity = require('socket.io')({
-	transports: ['websocket'],
-});
+  app.get('/key', function(req, res){
+    res.sendfile('public/steer.html');
+  });
 
+  app.get('/bf', function(req, res){
+    res.sendfile('public/brakefailcontrol.html');
+  });
 
+  app.get('/gas', function(req, res){
+    res.sendfile('public/gas.html');
+  });
 
-http.listen(5000, function(){
-  console.log(' ');
-  console.log('-- port open infor 小鲜橙在 *:5000 等你啦 --');
-});
+  app.get('/brake', function(req, res){
+    res.sendfile('public/brake.html');
+  });
 
-var Handlegas = false;
-var Handlebrake = false;
+  app.get('/view', function(req, res){
+    res.sendfile('public/view.html');
+  });
 
-var gasID;
-var brakeID;
+  //Http Server
+  var httpServer = require('http').Server(app);
+  httpServer.listen(5000, function(){
+    console.log(' ');
+    console.log('-- port open @ 5000 --');
+  });
 
-var gasVal = 0, brakeVal = 0, steerVal = 0;
-var gearVal = [];
+//For Web Clients
+var io_http = require('socket.io')(httpServer);
+var io_unity = require('socket.io')({ transports: ['websocket'], });
 
-var brakefailVal = false;
+  io_unity.attach(3000);
 
-app.use(express.static('pedals'));
+//-- Cache Data --//
+var driveData = {
+  gasVal : 0,
+  brakeVal : 0,
+  steerVal : 0,
+  gearVal : [],
+  brakefailVal: false,
+}
 
-//var PedalList = new Array();
-//var DeviceCount = 0;
-
-//------------------ FOOTPEDAL--------------------------//
-//               ||                     //
-//               ||                    //
-//               ||               ----------
-//         -------------         |          |
-//        |   -------   |        |   |   |  |
-//        |   -------   |        |   |   |  |
-//        |    BRAKE    |        |ACCELERATE|
-//        |   -------   |        |   |   |  |
-//        \-------------/        |   |   |  |
-//                               |   |   |  |
-//                               |          |
-//                               \----------/
-//   ----------------------------------------------------
-
-//-----------------------END-----------------------------//
 
 var unitySocket;
 var unityConnection = false;
@@ -53,148 +54,120 @@ var unityConnection = false;
 var steerSocket;
 var steerConnection = false;
 
-app.get('/key', function(req, res){
-  res.sendfile('steer.html');
-});
+var ipAddress = ip.address();
 
-app.get('/bf', function(req, res){
-  res.sendfile('/brakefailcontrol.html');
-});
+  io_http.on('connection', function(socket){
 
-app.get('/', function(req, res){
+    if( socket.handshake.headers.referer == "http://" + ipAddress + ":5000/key"){
+      steerConnection = true
+      steerSocket = socket;
+      console.log("-- steer has connected --");
+    }    
 
-  if(Handlegas == false && Handlebrake == false){
-  Handlegas = true;
-  res.sendfile('gas.html');
-  // res.sendfile('gas.jpg');
-  }
-  else if(Handlegas == true && Handlebrake == false){
-  Handlebrake = true;
-  res.sendfile('brake.html');
-  }
-  else if(Handlegas == false && Handlebrake == true){
-  Handlegas = true;
-  res.sendfile('gas.html');
-  }
-  else if(Handlegas == true && Handlebrake == true){
-  return false;
-  }
-});
+    socket.on('view', function(msg){
+      //console.log("display Connected");
+    });
 
-app.get('/view', function(req, res){
-  res.sendfile('view.html');
-});
+    socket.on('steer', function(msg){
+      driveData.steerVal = msg[0];
+      driveData.gearVal[0] = msg[1];
+      driveData.gearVal[1] = msg[2];
 
+      if(unityConnection == true){
+        SendToUnity();
+      }
+    });  
 
-io_http.on('connection', function(socket){
-  steerConnection = true
-  steerSocket = socket;
+  //-------------gas---------------//
+    socket.on('gas', function(msg){
+      io_http.emit('gas', msg);
 
-  socket.on('view', function(msg){
-    //console.log("display Connected");
-  });
+      if( msg[0] < -0.695 && msg[0] > -0.93){ //crop the range
+      	driveData.gasVal =  1-((0.9 + msg[0]) / 0.2);
+      }
+      else{
+      	driveData.gasVal = 0;
+      }
 
-  socket.on('steer', function(msg){
-    steerVal = msg[0];
-    gearVal[0] = msg[1];
-    gearVal[1] = msg[2];
-    if(unityConnection == true){
-    SendToUnity();
-  }
-  });  
+    });
 
-//-------------gas---------------//
-  socket.on('gas', function(msg){
-    io_http.emit('gas', msg);
-    gasID = socket.id;
-    //console.log(socket.id);
-    //console.log(msg[0]);
-    if( msg[0] < -0.695 && msg[0] > -0.93){ 
-    	gasVal =  1-((0.9 + msg[0]) / 0.2);
-      //console.log(gasVal)
-    	//console.log("gas_push", gasVal);
-    }
-    else{
-    	gasVal = 0;
-    	//console.log("gas_release", gasVal);
-    }
-    if(unityConnection == true){
-    SendToUnity();
-	}
+  //------------brake--------------//
+    socket.on('brake', function(msg){
+      io_http.emit('brake', msg);
 
-  });
+      if( msg[0] < -0.37 && msg[0] > -0.721){ //crop the range
+      	driveData.brakeVal =  (0.721 + msg[0]) / 0.35;
+      }
+      else{
+      	driveData.brakeVal = 0;
+      }
 
-//------------brake--------------//
-  socket.on('brake', function(msg){
-    io_http.emit('brake', msg);
-    // console.log(msg[0]);
-    brakeID = socket.id;
+    });
 
-     if( msg[0] < -0.37 && msg[0] > -0.721){ 
-    	brakeVal =  (0.721 + msg[0]) / 0.35;
-    	//console.log("gas_push", gasVal);
-    }
-    else{
-    	brakeVal = 0;
-    	//console.log("gas_release", gasVal);
-    }
-    if(unityConnection == true){
-    SendToUnity();
-	}
-
-  });
-
-  //------------brakefail----------//
+    //------------brakefail----------//
     socket.on('brakefail', function(msg){
-    io_http.emit('brake', msg);
-    if(msg == false){
-    brakefailVal = 0;
-    }
-    else if(msg == true){
-    brakefailVal = 1;
-    }
-    //console.log(brakefailVal);
-    if(unityConnection == true){
-    SendToUnity();
-    }
+
+      io_http.emit('brake', msg);
+
+      if(msg == false){
+        driveData.brakefailVal = 0;
+      }
+      else if(msg == true){
+        driveData.brakefailVal = 1;
+      }
+
+    });
+
+    socket.on('disconnect',function(){
+      if( socket.handshake.headers.referer == "http://" + ipAddress + ":5000/key"){
+        steerConnection = false;
+        steerSocket = null;
+        console.log("-- steer has disconnected --");
+      }
+    })
 
   });
 
-  socket.on('disconnect', function(){
-    if(socket.id == gasID){ Handlegas = false; console.log('GAS Pedal lost');}
-    if(socket.id == brakeID){ Handlebrake = false; console.log('BRAKE Pedal lost');}
+  io_unity.on('connection', function(socket){
+  	unityConnection = true
+    console.log("unity connected")
+  	unitySocket = socket;
+
+  	socket.on('beep', function(){
+  		socket.emit('boop', driveData );
+    });
+
+    socket.on('tach', function(msg){
+        SendToSteerDis(msg);
+    }); 
+
+    socket.on("disconnect",function(){
+      console.log("lost untiy game")
+    })
+
   });
-
-});
-
-
-io_unity.attach(3000);
-
-io_unity.on('connection', function(socket){
-	unityConnection = true
-	unitySocket = socket;
-
-	socket.on('beep', function(){
-		socket.emit('boop',{gas:gasVal, brake:brakeVal, steer:steerVal, gear:gearVal, brakefail:brakefailVal});
-});
-
-  socket.on('tach', function(msg){
-    if(steerConnection == true){
-    SendToSteerDis(msg);
-    }
-  }); 
-
-});
 
 function SendToUnity(){
-	unitySocket.emit('boop',{gas:gasVal, brake:brakeVal, steer:steerVal, gear:gearVal, brakefail:brakefailVal});
-	//console.log(gasVal,brakeVal,steerVal);
+  if(unityConnection){
+	   unitySocket.emit('boop', driveData );
+  }
 }
-
 
 function SendToSteerDis(tach){
-  steerSocket.emit( 'tachBack' , tach );
+  if(steerConnection){
+    steerSocket.emit( 'tachBack' , tach );
+  }
 }
+
+function startGameInput(){
+  setInterval(function(){
+      SendToUnity();
+  },80);
+}
+
+
+
+
 
 
 

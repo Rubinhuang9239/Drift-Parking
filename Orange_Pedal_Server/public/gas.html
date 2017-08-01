@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Gas Pedal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+      var socket = io({role:"gas"});
+      var gasPos = new Array();
+      var stableVal={
+            y : 0,
+            rotate : null,
+          }
+        
+      function sendGasPos(){
+
+        gasPos[0] = stableVal.rotate;
+        if(stableVal.rotate){
+          socket.emit('gas',gasPos);
+          back.style.transform = "translateY(" + Math.round( (window.innerHeight / 6)  + stableVal.y) + "px)";
+        }
+        setTimeout(function(){sendGasPos();},50);
+
+      }
+
+      window.addEventListener("load",function(){
+
+        window.addEventListener('devicemotion',function(event){
+          var acceleration = event.accelerationIncludingGravity;
+          tilt = acceleration.z/9.8;
+          stableVal.y += ( tilt * (window.innerHeight/3) -stableVal.y ) * 0.2;
+          stableVal.rotate += ( tilt - stableVal.rotate) * 0.2;
+        });
+
+        sendGasPos();
+      })
+
+    </script>
+
+    <style>
+
+      body{
+        height:100%;
+        width:100%;
+        padding:0px;
+      }
+        
+      #stick{
+        text-align:center;
+        background-color:#FFF;
+        line-height: 120px;
+        height: 120px;
+        width: 120px;
+        font-family: Helvetica, Arial, sans-serif;
+        color: #222;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        z-index:99;
+      }
+        
+      #back{
+          background-color:#000;
+          height:240px;
+          width:240px;
+      }
+
+      .stickparts{
+        opacity: 0.4;
+        position:absolute;
+        border-radius:50%;
+        right:0px;
+        left:0px;
+        top:0px;
+        bottom: 0px;
+        margin:auto;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="stickparts" id="stick">
+      GAS
+    </div>
+    <div class="stickparts" id="back"></div>
+
+  </body>
+</html>

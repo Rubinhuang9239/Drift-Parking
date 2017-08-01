@@ -1,13 +1,11 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{DDB361BC-486A-D2C2-4D3C-EA5B16EB6D19}") = "Orange Pedal", "Assembly-CSharp-firstpass.csproj", "{7E8A0EB4-F0F0-78A5-DC85-813F6D7E461B}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange Pedal", "Assembly-CSharp-firstpass.csproj", "{7E8A0EB4-F0F0-78A5-DC85-813F6D7E461B}"
 EndProject
-Project("{DDB361BC-486A-D2C2-4D3C-EA5B16EB6D19}") = "Orange Pedal", "Assembly-CSharp.csproj", "{71DDAFE0-BED5-7EC9-31FB-D8D019B78CC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange Pedal", "Assembly-CSharp.csproj", "{71DDAFE0-BED5-7EC9-31FB-D8D019B78CC4}"
 EndProject
-Project("{DDB361BC-486A-D2C2-4D3C-EA5B16EB6D19}") = "Orange Pedal", "Assembly-CSharp-Editor.csproj", "{58FC09CD-AD86-FB15-21CD-7107A4E42E08}"
-EndProject
-Project("{DDB361BC-486A-D2C2-4D3C-EA5B16EB6D19}") = "Orange Pedal", "Assembly-UnityScript.unityproj", "{DAEB1791-3B60-0BF3-1961-B551B6C91F9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orange Pedal", "Assembly-CSharp-Editor.csproj", "{58FC09CD-AD86-FB15-21CD-7107A4E42E08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +25,6 @@ Global
 		{58FC09CD-AD86-FB15-21CD-7107A4E42E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58FC09CD-AD86-FB15-21CD-7107A4E42E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58FC09CD-AD86-FB15-21CD-7107A4E42E08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DAEB1791-3B60-0BF3-1961-B551B6C91F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAEB1791-3B60-0BF3-1961-B551B6C91F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAEB1791-3B60-0BF3-1961-B551B6C91F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAEB1791-3B60-0BF3-1961-B551B6C91F9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,5 +48,4 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
-
 EndGlobal

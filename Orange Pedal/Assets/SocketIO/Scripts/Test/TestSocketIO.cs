@@ -82,29 +82,30 @@ public class TestSocketIO : MonoBehaviour
 	public void TestBoop(SocketIOEvent e)
 	{
 
-		JSONObject gasValObject = e.data["gas"];
+		JSONObject gasValObject = e.data["gasVal"];
 		float gasVal = float.Parse(gasValObject.ToString());
-		Audi_R8.SendMessage("updateGasPedalPos", gasVal);
+		//Audi_R8.SendMessage("updateGasPedalPos", gasVal);
+		print (gasVal);
 
 
-		JSONObject brakeValObject = e.data["brake"];
+		JSONObject brakeValObject = e.data["brakeVal"];
 		float brakeVal = float.Parse(brakeValObject.ToString());
 		Audi_R8.SendMessage("updateBrakePedalPos", brakeVal);
 
 
-		JSONObject steerValObject = e.data["steer"];
+		JSONObject steerValObject = e.data["steerVal"];
 		float steerVal = float.Parse(steerValObject.ToString());
 		Audi_R8.SendMessage("updateSteerPos", steerVal);
 
 
-		JSONObject gearValObject = e.data["gear"];
+		JSONObject gearValObject = e.data["gearVal"];
 		int gearVal = int.Parse(gearValObject[0].ToString());
 		int torqueVal = int.Parse(gearValObject[1].ToString());
 		Audi_R8.SendMessage("updateGearPos", gearVal);
 		Audi_R8.SendMessage("updateTorquePos", torqueVal);
 
 
-		JSONObject brakeFailValObject = e.data["brakefail"];
+		JSONObject brakeFailValObject = e.data["brakefailVal"];
 		float brakeFailVal = int.Parse(brakeFailValObject.ToString());
 		Audi_R8.SendMessage("updateBrakeFailPos", brakeFailVal);
 

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Project Joystick</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        var socket = io({role:"brake"});
+        var brakePos = new Array();
+        var stableVal={
+          x : 0,
+          rotate : null,
+        }
+          
+        function sendBrakePos(){
+
+          brakePos[0] = stableVal.rotate;
+          if(stableVal.rotate){
+            socket.emit('brake',brakePos);
+            back.style.transform = "translateY(" + Math.round( (window.innerHeight / 6)  + stableVal.x) + "px)";
+          }
+          setTimeout(function(){sendBrakePos();},50);
+
+        }
+
+        window.addEventListener("load",function(){
+
+          window.addEventListener('devicemotion',function(event){
+            var acceleration = event.accelerationIncludingGravity;
+            tilt = acceleration.x/9.8;
+            stableVal.x += ( tilt * (window.innerHeight/3) -stableVal.x ) * 0.2;
+            stableVal.rotate += ( tilt - stableVal.rotate) * 0.2;
+          });
+
+          sendBrakePos();
+
+        })  
+
+    </script>
+
+    <style>
+       #stick{
+              text-align:center;
+              background-color:#FFF;
+              line-height: 120px;
+              height: 120px;
+              width: 120px;
+              font-family: Helvetica, Arial, sans-serif;
+              color: #222;
+              box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+              z-index:99;
+            }
+              
+        #back{
+              background-color:#000;
+              height:240px;
+              width:240px;
+        }
+
+        .stickparts{
+              opacity: 0.4;
+              position:absolute;
+              border-radius:50%;
+              right:0px;
+              left:0px;
+              top:0px;
+              bottom: 0px;
+              margin:auto;
+        }
+
+      </style>
+  </head>
+
+  <body>
+    <div class="stickparts" id="stick">
+      Brake
+    </div>
+    <div class="stickparts" id="back"></div>
+  </body>
+
+</html>

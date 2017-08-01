@@ -1,0 +1,20 @@
+{
+  "name": "drift-parking",
+  "version": "1.0.0",
+  "description": "server for the web-unity driving game",
+  "main": "drive.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "unity"
+  ],
+  "author": "Rubin Huang",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "ip": "^1.1.5",
+    "socket.io": "^2.0.3"
+  }
+}
