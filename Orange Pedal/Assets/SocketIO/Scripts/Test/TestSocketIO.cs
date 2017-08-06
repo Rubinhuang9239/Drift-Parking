@@ -37,17 +37,12 @@ public class TestSocketIO : MonoBehaviour
 
 	public void Start() 
 	{ 
-		GameObject go = GameObject.Find("SocketIO");
-		socket = go.GetComponent<SocketIOComponent>();
-
 		socket.On("open", TestOpen);
 		socket.On("boop", TestBoop);
 		socket.On("error", TestError);
 		socket.On("close", TestClose);
 		
 		StartCoroutine("BeepBoop");
-
-		Audi_R8 = GameObject.Find("Audi_R8");
 	}
 
 	private IEnumerator BeepBoop()
