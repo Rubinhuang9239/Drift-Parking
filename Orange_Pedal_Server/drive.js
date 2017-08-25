@@ -95,7 +95,7 @@ var ipAddress = ip.address();
       else{
       	driveData.gasVal = 0;
       }
-      console.log(driveData.gasVal);
+      //console.log(driveData.gasVal);
 
     });
 
