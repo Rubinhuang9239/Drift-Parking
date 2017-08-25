@@ -1,0 +1,83 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-library-helper": {
+            "PHOTO_LIBRARY_USAGE_DESCRIPTION": "Save media to your Camera Roll",
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "nl.x-services.plugins.videocaptureplus": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.driftParking.gaspedal"
+        }
+    }
+}

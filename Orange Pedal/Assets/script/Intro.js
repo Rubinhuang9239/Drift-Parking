@@ -93,7 +93,7 @@ shiftRender.color.a -= 0.02;
 
 function introSq(){
 
-while (introSqCount <= 3) {
+	while (introSqCount <= 3) {
 		introSqCount ++;
 		if(introSqCount == 2){
 		fadeoutMainCoverKey=false;

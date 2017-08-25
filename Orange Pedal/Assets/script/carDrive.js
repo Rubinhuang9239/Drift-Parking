@@ -273,18 +273,5 @@ brakeFail = true;
 
 }
 
-function OnGUI(){
-CheckPointDis=checkPointCount.ToString();
- GUI.Box(Rect(20,20,Screen.width*0.18,Screen.height*0.1), CheckPointDis + " / 10 Acheived", DisplayStyle);
- GUI.Box(Rect(20,22+Screen.height*0.1,Screen.width*0.18,Screen.height*0.1), "Time " + timeLeft, DisplayStyle2);
- if(GUI.Button(Rect(30,30+Screen.height*0.2,Screen.width*0.06,Screen.width*0.06),"", DisplayStyleReset)){
- if(checkPointCount>0){
- R8.transform.position.x = parkingPos.x;
- R8.transform.position.y = parkingPos.y+0.5;
- R8.transform.position.z = parkingPos.z;
- }
- }
-}
-
 
 

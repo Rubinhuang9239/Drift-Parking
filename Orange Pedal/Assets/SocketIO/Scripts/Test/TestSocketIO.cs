@@ -79,8 +79,7 @@ public class TestSocketIO : MonoBehaviour
 
 		JSONObject gasValObject = e.data["gasVal"];
 		float gasVal = float.Parse(gasValObject.ToString());
-		//Audi_R8.SendMessage("updateGasPedalPos", gasVal);
-		print (gasVal);
+		Audi_R8.SendMessage("updateGasPedalPos", gasVal);
 
 
 		JSONObject brakeValObject = e.data["brakeVal"];

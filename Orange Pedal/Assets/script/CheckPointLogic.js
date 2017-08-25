@@ -10,18 +10,18 @@ var FRWheel:GameObject;
 var BRWheel:GameObject;
 var BLWheel:GameObject;
 
-var CurrentRenderer : Renderer;
-var CurrentGameObject : GameObject;
+var parkRenderer : Renderer;
 
 var TargetMateriaDefault : Material;
 var TargetMateriaFinish : Material;
 
-var gotTarget:boolean = false;
+private var gotTarget:boolean = false;
+
 var Audi_R8:GameObject; 
 private var Audi_R8_Rigidbody : Rigidbody;
 
 var DoSomethingTime : int = 0;
-var speed : int = 0;
+private var speed : int = 0;
 
 var parkingPos:Vector3;
 
@@ -31,7 +31,7 @@ function Start () {
 	FRCheckPoint = transform.Find("checkPoint2").gameObject.transform.position;
 	BRCheckPoint = transform.Find("checkPoint3").gameObject.transform.position;
 	BLCheckPoint = transform.Find("checkPoint4").gameObject.transform.position;
-	CurrentRenderer = transform.GetComponent.<Renderer>();
+	parkRenderer = transform.GetComponent.<Renderer>();
 	Audi_R8_Rigidbody = Audi_R8.GetComponent.<Rigidbody>();
 	parkingPos = transform.position;
 
@@ -45,37 +45,34 @@ function Update () {
 			   Vector3.Distance(FRWheel.transform.position, FRCheckPoint) + 
 			   Vector3.Distance(BRWheel.transform.position, BRCheckPoint) + 
 			   Vector3.Distance(BLWheel.transform.position, BLCheckPoint)
-			   <5
+			   <10
 	){
-
 		if(speed == 0){
-			CurrentRenderer.material = TargetMateriaFinish;
+			parkRenderer.material = TargetMateriaFinish;
 			if(gotTarget == false ){
 				gotTarget = true;
-				Audi_R8.SendMessage("updateParkingCount", gotTarget);
-				Audi_R8.SendMessage("updateLastParkingSite", parkingPos);
-				//Debug.Log(parkingPos.x + " " + parkingPos.y + " " + parkingPos.z);
-				StartCoroutine("DoSomething");
+				//check angin in 2 Secs
+				checkSpeedAgain();
 			}
 		}
-
-
 	}
 	else{
-		CurrentRenderer.material = TargetMateriaDefault;
+		parkRenderer.material = TargetMateriaDefault;
 	}
 
 }
 
-function DoSomething(){
-	while (DoSomethingTime <= 2) {
-		if(DoSomethingTime == 2){
-			DoSomethingTime++;
-			print("DoSomething_stop");
-			Destroy(transform.gameObject);
-		}
-	    DoSomethingTime++;
-	    print("DoSomething_Loop");
+
+function checkSpeedAgain(){
 	    yield WaitForSeconds (2);
-	 }
+
+	    if(speed == 0){
+	    	Audi_R8.SendMessage("updateParkingCount", gotTarget);
+			Audi_R8.SendMessage("updateLastParkingSite", parkingPos);
+	    	Destroy(transform.gameObject);
+	    }
+	    else{
+			gotTarget = false;
+	    }
+
 }

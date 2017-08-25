@@ -4,6 +4,8 @@ import UnityEngine.Audio;
 private var Audi_R8_Rigidbody : Rigidbody;
 var R8 : GameObject;
 
+var steerWheelTrans : Transform; 
+
 var FRWheelMash : GameObject;
 var FLWheelMash : GameObject;
 
@@ -24,29 +26,33 @@ var LookingPoint : GameObject;
 
 var socketObj : GameObject;
 
-var trueTorque:int = 0;
-var maxBrakeTorque:int = 400;
+private var trueTorque:int = 0;
+private var maxBrakeTorque:int = 200;
 
-var gasVal:float = 0;
-var brakeVal:float = 0;
-var steerVal:float = 0;
-var gearName:int = 3;
-var handBrake:boolean = false;
-var smoothRpm : int = 0;
+private var gasVal:float = 0;
+private var brakeVal:float = 0;
+private var steerVal:float = 0;
+private var gearName:int = 3;
+private var handBrake:boolean = false;
+private var smoothRpm : int = 0;
 
-var checkPointCount : int = 0;
+private var checkPointCount : int = 0;
 
-var BrakeLights_on : GameObject;
-var BrakeLights_off : GameObject;
+var BrakeOnMat : Material;
+var BrakeOffMat : Material;
 
-var parkingPos:Vector3;
+var BrakeLightsRend : Renderer;
+
+private var parkingPos:Vector3;
 
 var EngineSound:GameObject;
 var EngineSoundWave:AudioSource;
 
-var timeLeft : float = 620.0;
+private var timeLeft : float = 620.0;
 
-var brakeFail:boolean = false;
+private var brakeFail:boolean = false;
+
+private var getTorque : boolean = true;
 
 //-----GUI------//
 
@@ -54,6 +60,7 @@ var checkPointsRemain : Text;
 var timeRemain : Text;
 
 function Start () {
+	Application.runInBackground = true;
 
 	GetComponent.<Rigidbody>().centerOfMass.y = 0;
 
@@ -77,35 +84,37 @@ function FixedUpdate () {
 	 FLWheelMash.transform.localRotation.y = Mathf.PI*( - 0.125 * steerVal ) ;
 	 FRWheelMash.transform.localRotation.y = Mathf.PI*( - 0.125 * steerVal ) ;
 	 
-	 FRWheel.steerAngle = -30 * steerVal;
-	 FLWheel.steerAngle = -30 * steerVal;
+	 FRWheel.steerAngle = -35 * steerVal;
+	 FLWheel.steerAngle = -35 * steerVal;
+
+	 steerWheelTrans.localEulerAngles.x = 100 * steerVal;
 	 
 	 var wheelRotationDis=Vector3.left*smoothRpm*25*Time.deltaTime;
 	 
 	 
 	if(smoothRpm <= 40){
 		EngineSoundWave.pitch = (0.3 + smoothRpm * 0.01);
-		EngineSoundWave.volume = (0.02 + smoothRpm * 0.005);
+		EngineSoundWave.volume = (0.05 + smoothRpm * 0.005);
 	}
 	else if(smoothRpm > 40 && smoothRpm <= 65){
 		EngineSoundWave.pitch = (0.6 + smoothRpm * 0.005);
-		EngineSoundWave.volume = (0.04 + smoothRpm * 0.0037);
+		EngineSoundWave.volume = (0.09 + smoothRpm * 0.0037);
 	}
 	else if(smoothRpm > 65 && smoothRpm <= 100){
 		EngineSoundWave.pitch = (0.72 + smoothRpm * 0.002);
-		EngineSoundWave.volume = (0.06 + smoothRpm * 0.0025);
+		EngineSoundWave.volume = (0.12 + smoothRpm * 0.0025);
 	}
 	else if(smoothRpm > 100 && smoothRpm <= 135){
 		EngineSoundWave.pitch = (0.84 + smoothRpm * 0.0012);
-		EngineSoundWave.volume = (0.1 + smoothRpm * 0.002);
+		EngineSoundWave.volume = (0.16 + smoothRpm * 0.002);
 	}
 	else if(smoothRpm > 135 && smoothRpm <= 170){
 		EngineSoundWave.pitch = (0.9 + smoothRpm * 0.0008);
-		EngineSoundWave.volume = (0.16 + smoothRpm * 0.0015);
+		EngineSoundWave.volume = (0.22 + smoothRpm * 0.0015);
 	}
 	else if(smoothRpm > 170 && smoothRpm <= 205){
 		EngineSoundWave.pitch = (0.95 + smoothRpm * 0.0006);
-		EngineSoundWave.volume = (0.24 + smoothRpm * 0.0012);
+		EngineSoundWave.volume = (0.3 + smoothRpm * 0.0012);
 	}
 	 
 	 FLWheelMashOut.transform.Rotate(wheelRotationDis);
@@ -117,12 +126,12 @@ function FixedUpdate () {
 	 //--------Brake-------//
 	 
 	  //----------------//
-	 gasVal = 0.85;
+	 //gasVal = 0.85;
 	 //----------------//
 
 	if(handBrake == false){
 	 //----------------//
-	 brakeVal = Input.GetAxis("Vertical");
+	 //brakeVal = 0;
 	 //----------------//
 	if(brakeFail == false){
 	 	FRWheel.brakeTorque = maxBrakeTorque * brakeVal;
@@ -154,21 +163,20 @@ function FixedUpdate () {
 	 }
 	 
 	 }
-	 
+
+	 //print(FRWheel.brakeTorque);
 	 
 	 if(FRWheel.brakeTorque > 40){
 		Brake_Tails.active = true;
-		BrakeLights_on.active = true;
-		BrakeLights_off.active = false;
+		BrakeLightsRend.material = BrakeOnMat;
 	 //----------------//
 		// trueTorque = 0;
 	 //----------------//
 
 	 }else{
 	 
-	 Brake_Tails.active = false;
-	 BrakeLights_on.active = false;
-	 BrakeLights_off.active = true;
+	 	Brake_Tails.active = false;
+		BrakeLightsRend.material = BrakeOffMat;
 	 
 	 //----------------//
 	 if(brakeFail == true ){
@@ -188,7 +196,7 @@ function FixedUpdate () {
 	 BRWheel.motorTorque = trueTorque * gasVal;
 	 BLWheel.motorTorque = trueTorque * gasVal;
 	 
-	 smoothRpm = 10 * transform.InverseTransformDirection(Audi_R8_Rigidbody.velocity).z;
+	 smoothRpm = 7 * transform.InverseTransformDirection(Audi_R8_Rigidbody.velocity).z;
 	 socketObj.SendMessage("tachFeedback", smoothRpm);
  
 	//-------Timmer----//
@@ -201,7 +209,24 @@ function FixedUpdate () {
 
 	//--------GUI--------//
 
-	 timeRemain.text = "Time " + Mathf.Floor(timeLeft/60) + ":" + Mathf.Floor(timeLeft%60);
+	var min : int = Mathf.Floor(timeLeft/60);
+	var sec : int = Mathf.Floor(timeLeft%60);
+	var secString : String = "";
+	var minString : String = "";
+
+	if(min < 10){
+		minString = "0" + min.ToString();
+	}else{
+		minString = min.ToString();
+	}
+
+	if(sec < 10){
+		secString = "0" + sec.ToString();
+	}else{
+		secString = sec.ToString();
+	}
+
+	 timeRemain.text = "Time " + minString + ":" + secString;
 	 checkPointsRemain.text = checkPointCount + " / 10";
 }
 	
@@ -219,8 +244,6 @@ function updateSteerPos(steerPos:float){
 
 	steerVal = steerPos;
 }
-
-var getTorque : boolean = true;
 
 function updateGearPos(gear_Name:int){
 	

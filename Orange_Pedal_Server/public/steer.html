@@ -16,7 +16,6 @@
       var stableVal={
           rotate : null,
       }
-
       //-----------JoySticks UI------------//
         
           
@@ -52,6 +51,7 @@
             var acceleration = event.accelerationIncludingGravity;
             tilt = acceleration.y/9.8;
             stableVal.rotate += ( tilt - stableVal.rotate) * 0.2;
+            stableVal.rotate = Number(stableVal.rotate.toPrecision(4));
             steerDisplay.style.webkitTransform = "rotateZ("+ 90 * stableVal.rotate + "deg)";
           });
 
@@ -74,7 +74,7 @@
       });  
 
       socket.on('tachBack', function(msg){
-         tachDisVal = Math.floor((msg/210)*(450));
+         tachDisVal = Math.floor((msg/210)*(400));
          mphVal = msg;
          tachHide.style.backgroundPosition = 'center ' + -1 * Math.abs(tachDisVal) + "px";
          steerDisplay.innerHTML = Math.abs(mphVal);

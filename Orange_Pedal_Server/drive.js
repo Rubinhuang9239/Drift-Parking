@@ -58,11 +58,16 @@ var ipAddress = ip.address();
 
   io_http.on('connection', function(socket){
 
-    if( socket.handshake.headers.referer == "http://" + ipAddress + ":5000/key"){
+    if( socket.handshake.headers.referer == "http://" + ipAddress + ":5000/key" || socket.handshake.query.role == "key"){
       steerConnection = true
       steerSocket = socket;
       console.log("-- steer has connected --");
-    }    
+    }else if(socket.handshake.headers.referer == "http://" + ipAddress + ":5000/gas" || socket.handshake.query.role == "gas"){
+      console.log("-- gas has connected --");
+    }
+    else if(socket.handshake.headers.referer == "http://" + ipAddress + ":5000/brake" || socket.handshake.query.role == "brake"){
+      console.log("-- brake has connected --");
+    }       
 
     socket.on('view', function(msg){
       //console.log("display Connected");
@@ -82,12 +87,15 @@ var ipAddress = ip.address();
     socket.on('gas', function(msg){
       io_http.emit('gas', msg);
 
-      if( msg[0] < -0.695 && msg[0] > -0.93){ //crop the range
-      	driveData.gasVal =  1-((0.9 + msg[0]) / 0.2);
+      if( msg[0] < -0.697 && msg[0] > -0.93){ //crop the range
+      	driveData.gasVal =  1-((0.9 + msg[0]) / 0.25);
+      }else if(msg[0] <= -0.697){
+        driveData.gasVal = 1;
       }
       else{
       	driveData.gasVal = 0;
       }
+      console.log(driveData.gasVal);
 
     });
 
@@ -95,12 +103,18 @@ var ipAddress = ip.address();
     socket.on('brake', function(msg){
       io_http.emit('brake', msg);
 
-      if( msg[0] < -0.37 && msg[0] > -0.721){ //crop the range
-      	driveData.brakeVal =  (0.721 + msg[0]) / 0.35;
+      //console.log(msg);
+
+      if( msg[0] < -0.373 && msg[0] > -0.723){ //crop the range
+      	driveData.brakeVal =  (0.721 + msg[0]) / 0.36;
+        driveData.brakeVal = Number(driveData.brakeVal.toPrecision(4));
+      }else if(msg[0] >= -0.723){
+        driveData.brakeVal = 1;
       }
       else{
       	driveData.brakeVal = 0;
       }
+      //console.log(driveData.brakeVal);
 
     });
 
@@ -119,10 +133,11 @@ var ipAddress = ip.address();
     });
 
     socket.on('disconnect',function(){
-      if( socket.handshake.headers.referer == "http://" + ipAddress + ":5000/key"){
+      if( socket.handshake.headers.referer == "http://" + ipAddress + ":5000/key" || socket.handshake.query.role == "key"){
         steerConnection = false;
         steerSocket = null;
         console.log("-- steer has disconnected --");
+        resetDriveData();
       }
     })
 
@@ -142,7 +157,8 @@ var ipAddress = ip.address();
     }); 
 
     socket.on("disconnect",function(){
-      console.log("lost untiy game")
+      console.log("lost untiy game");
+      resetDriveData();
     })
 
   });
@@ -163,6 +179,18 @@ function startGameInput(){
   setInterval(function(){
       SendToUnity();
   },80);
+}
+
+function resetDriveData(){
+
+  driveData = {
+    gasVal : 0,
+    brakeVal : 0,
+    steerVal : 0,
+    gearVal : [],
+    brakefailVal: false,
+  }
+
 }
 
 

@@ -1,0 +1,146 @@
+<html>
+	
+	<title>Dashboard</title>
+	<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		
+		<style>
+		
+			html{
+				height:100%;
+				width:100%;
+			}
+		
+			body{
+				height:100%;
+				width:100%;
+				margin:0px;
+				padding:0px;
+				position:relative;
+				font-family: helvetica;
+				text-align: center;
+				background-color: #444;
+				color: #FFF;
+				font-size: 1.45em;
+				text-shadow: 0px 0px 10px #000;
+			}
+		
+			#key,#pedalRow{
+				width:100%;
+				height: 50%;
+				left: 0px;
+				position:absolute;
+				outline: solid 2px #000;
+			}
+
+			#key{
+				top: 0px;
+				background-image: url("img/steer.jpg");
+			}
+			
+			#pedalRow{
+				top: 50%;
+				background-image: url("img/pedals.jpg");
+			}
+
+			.backgroundImg{
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+			
+			.pedals{
+				position: absolute;
+				height: 100%;
+				outline: solid 2px #000;
+			}
+			
+			#test{
+				width: 20%;
+				left: 0%;
+			}
+			
+			#brake{
+				width:50%;
+				left: 20%;
+			}
+			
+			#gas{
+				width:30%;
+				left: 70%;
+			}
+
+			#test{
+				background-image: url("img/test.jpg");
+			}
+
+			.Absolute-Center {
+			  margin: auto;
+			  position: absolute;
+			  top: 0; left: 0; bottom: 0; right: 0;
+			  height: 1em;
+			}
+			
+		
+		</style>
+
+
+		<script>
+
+			window.addEventListener("load",function(){
+				document.getElementById("key").addEventListener("click",function(){
+					window.location.href = "/key";
+				});
+
+				document.getElementById("test").addEventListener("click",function(){
+					window.location = "/view";
+				});
+
+				document.getElementById("gas").addEventListener("click",function(){
+					window.location = "/gas";
+				});
+
+				document.getElementById("brake").addEventListener("click",function(){
+					window.location = "/brake";
+				});
+
+			});
+
+		</script>
+		
+	</head>
+	
+	
+	<body>
+	
+		<div id = "key" class="backgroundImg">
+			<div class="Absolute-Center">
+				Steer And Gears
+			</div>
+		</div>
+		
+		<div id="pedalRow" class="backgroundImg">
+			<div id = "brake" class="pedals">
+				<div class="Absolute-Center">
+					Brake
+				</div>
+			</div>
+		
+			<div id = "gas" class="pedals">
+				<div class="Absolute-Center">
+					Gas
+				</div>
+			</div>
+			
+			<div id = "test" class="pedals" class="backgroundImg">
+				<div class="Absolute-Center">
+					Test
+				</div>
+			</div>
+		</div>
+	
+	</body>
+
+
+
+</html>
