@@ -206,7 +206,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		r/OWmcKvr+ALpeWB1Cv9UO8UlwY=
+		iO6gg1K8WW495N34FhpHS4bO4RI=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -214,7 +214,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		J5icyyQD0FpCXBQuZfAf38cqp5o=
+		RLY7pmPzMrY8a73/jziWCbbNDc4=
 		</data>
 		<key>CDVNotification.bundle/beep.wav</key>
 		<data>
@@ -282,7 +282,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		Ya0LWeqpEUpBjVXXpPncOVImJHw=
+		IhBacU8/mEsnzZNDg6Ffzz1E2AA=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -334,7 +334,7 @@
 		</data>
 		<key>www/js/index.js</key>
 		<data>
-		g2fDvjucdeYCZLBKr0EYyPCwo+w=
+		Axp3EqhLlhIt7CeqaWB8rciQqp0=
 		</data>
 		<key>www/js/socket.io.js</key>
 		<data>
@@ -1414,11 +1414,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			r/OWmcKvr+ALpeWB1Cv9UO8UlwY=
+			iO6gg1K8WW495N34FhpHS4bO4RI=
 			</data>
 			<key>hash2</key>
 			<data>
-			o38DEImLt9hosmzwC9zy3FV/GINeOpdIS4YwOZxkcCM=
+			fl0IXHVngCL3ELoFpaRgRfeWmvrJ0ZAjh/NKnaN68KE=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -1436,11 +1436,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			J5icyyQD0FpCXBQuZfAf38cqp5o=
+			RLY7pmPzMrY8a73/jziWCbbNDc4=
 			</data>
 			<key>hash2</key>
 			<data>
-			Y3btx3aLvgtICrcZpG+l46UHFZLoloPptG6naCkzGlg=
+			E9JML6hvXX7RJHUhP3fUcaBO/uP4qfmzMXZYo9DDTLU=
 			</data>
 		</dict>
 		<key>CDVNotification.bundle/beep.wav</key>
@@ -1612,11 +1612,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Ya0LWeqpEUpBjVXXpPncOVImJHw=
+			IhBacU8/mEsnzZNDg6Ffzz1E2AA=
 			</data>
 			<key>hash2</key>
 			<data>
-			SXY+p+FVeU11jchr9SWoZ6SEhO5gN9VTBojbjvWhJqQ=
+			zzb15+tSwH5FKgEy6tpT+mCT+imdEFwxncm6757NqcM=
 			</data>
 		</dict>
 		<key>archived-expanded-entitlements.xcent</key>
@@ -1744,11 +1744,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			g2fDvjucdeYCZLBKr0EYyPCwo+w=
+			Axp3EqhLlhIt7CeqaWB8rciQqp0=
 			</data>
 			<key>hash2</key>
 			<data>
-			AbcfF+SWujwpfan0g82pEH+eXY96WNNx6MTQJNdL1ek=
+			xR3/TJcJCYPTvddpSwR1DE2vS6S6m1d4unXQQMblqOA=
 			</data>
 		</dict>
 		<key>www/js/socket.io.js</key>

@@ -21,6 +21,8 @@ var socket = io("http://192.168.77.2:5000?role=gas");
 
 var ui = {};
 
+    ui.capture = false;
+
     ui.init = function(){
 
         // window.addEventListener('devicemotion',function(event){
